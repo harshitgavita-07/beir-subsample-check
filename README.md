@@ -15,9 +15,10 @@ systems. Two of the headline rows are separated by hundredths of a point:
 | WonderSearch Small 74.68 vs bge-large-en-v1.5 74.64 | 0.04 |
 | WonderSearch Medium 77.79 vs text-embedding-3-large 77.77 | 0.02 |
 
-The page's own 95% bootstrap intervals are about 4 points wide. This repo
-measures what a comparison of that shape can and cannot show, using real BEIR
-data and two genuinely close retrieval systems.
+The page's own 95% bootstrap intervals span about 8 points (half-width ~4).
+This repo is an illustrative sensitivity demonstration: it shows, on real BEIR
+data with two genuinely close retrieval systems, how unstable small-subsample
+nDCG@10 comparisons can be.
 
 ## Method
 
@@ -29,34 +30,46 @@ data and two genuinely close retrieval systems.
   quoted above.
 - Metric: nDCG@10 with trec_eval semantics (implementation verified against
   `pytrec_eval` in `tests/`).
-- Subsamples: 20 seeds; per seed, 37 queries per dataset (their published
-  shape: "300 questions ... 8 datasets"), pooled and averaged.
+- Subsamples: 20 seeds; per seed, 37 queries per dataset, pooled across the
+  2 datasets (74 queries per run) and averaged. This is deliberately smaller
+  than their 300 questions across 8 datasets. Their per-dataset allocation and
+  weighting are not published, so 37-per-dataset is a uniform illustrative
+  choice, not a reconstruction of their setup. Smaller samples are noisier,
+  so the swings measured here do not transfer as magnitudes to their
+  evaluation; they illustrate the mechanism, not their numbers.
 
 ## Results (results.json, reproducible)
 
 - Full-test pooled scores differ by 0.02 points; the two systems are
   effectively tied.
-- Across the 20 subsample runs, the winner **flips 10 times out of 20**.
-  Picking the better system from one 300-question subsample is a coin flip.
+- Across the 20 subsample runs (74 pooled queries each), the winner
+  **flips 10 times out of 20**. At this sample size, picking the better of
+  two systems this close is a coin flip.
 - Subsample scores for the *same system* swing across seeds from 44.27 to
-  53.70 - a 9.4-point spread, roughly 200x the cited 0.04-point gap.
-- The full-set bootstrap 95% interval on ~620 pooled queries is already
-  ~6 points wide (44.15-50.42); subsampling to 74 pooled queries makes it
-  far worse.
+  53.70 - a 9.4-point spread, in a demo where the full-test gap is 0.02.
+- The full-set bootstrap 95% interval on ~620 pooled queries spans ~6.3
+  points (44.15-50.42); subsampling to 74 pooled queries widens it further.
+- These magnitudes describe this demo's systems and sample sizes only.
 
-## What this means for the benchmark page
+## What this does and does not show
 
-As published, rows separated by hundredths of a point cannot rank systems;
-the comparison mixes an internal 300-question subsample with full-test
-published numbers, and the subsample is not identified. The fix is cheap and
-standard: publish the question IDs and the harness, and score every compared
-system on the same questions. This repo is a working template for that - point
-`run_check.py` at the released question list and it produces full-set and
-matched-subsample numbers with intervals.
+This is an illustrative sensitivity demo on unrelated systems (two BM25
+configurations) and a different, smaller sample than WonderSearch's. It does
+not evaluate their systems, their harness, or their data, and it is not
+evidence that their published ranking is right or wrong. A paired comparison
+on identical questions can be decisive even at n=300, and their internal
+evaluation may well be one; nothing here rules that out.
 
-Nothing here says WonderSearch retrieval is good or bad. It says the current
-page's closest comparisons are statistically undecidable as published, and
-shows exactly how to make them decidable.
+The narrower, artifact-level point: as published, the page does not let an
+independent reader reproduce the comparison or assess the significance of its
+closest rows (0.02-0.04 nDCG@10 gaps). The question IDs, per-dataset
+allocation, weighting, and harness are not public, and their internal
+subsample scores sit next to externally published full-test scores, so the
+two sides cannot be paired from public materials. Making the comparison
+assessable is standard: publish the question IDs and the harness and score
+every compared system on the same questions with a paired test. This repo is
+a working template for that - point `run_check.py` at a released question
+list and it produces full-set and matched-subsample numbers with intervals.
 
 ## Run it
 

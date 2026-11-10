@@ -18,7 +18,7 @@ from subsample import subsample_queries, bootstrap_ci
 
 DATASETS = ["scifact", "nfcorpus"]
 SEEDS = 20
-SUBSAMPLE_N_PER_DATASET = 37  # 300 questions / 8 datasets, their published shape
+SUBSAMPLE_N_PER_DATASET = 37  # illustrative uniform allocation; their per-dataset allocation is unpublished
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 
