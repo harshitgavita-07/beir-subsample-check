@@ -1,0 +1,192 @@
+{
+ "datasets": {
+  "scifact": {
+   "n_queries": 300,
+   "n_docs": 5183,
+   "full": {
+    "bm25_k1.5": 65.23,
+    "bm25_k1.2": 65.49
+   }
+  },
+  "nfcorpus": {
+   "n_queries": 323,
+   "n_docs": 3633,
+   "full": {
+    "bm25_k1.5": 30.67,
+    "bm25_k1.2": 30.46
+   }
+  },
+  "pooled": {
+   "bm25_k1.5": {
+    "full_mean": 47.31,
+    "bootstrap95_full": [
+     44.15,
+     50.42
+    ]
+   },
+   "bm25_k1.2": {
+    "full_mean": 47.33,
+    "bootstrap95_full": [
+     44.13,
+     50.43
+    ]
+   }
+  }
+ },
+ "subsample": {
+  "n_per_dataset": 37,
+  "seeds": 20,
+  "runs": [
+   {
+    "seed": 0,
+    "bm25_k1.5": 53.7,
+    "bm25_k1.2": 54.06,
+    "winner": "bm25_k1.2",
+    "margin": 0.36
+   },
+   {
+    "seed": 1,
+    "bm25_k1.5": 51.17,
+    "bm25_k1.2": 51.8,
+    "winner": "bm25_k1.2",
+    "margin": 0.63
+   },
+   {
+    "seed": 2,
+    "bm25_k1.5": 45.13,
+    "bm25_k1.2": 45.06,
+    "winner": "bm25_k1.5",
+    "margin": 0.07
+   },
+   {
+    "seed": 3,
+    "bm25_k1.5": 47.55,
+    "bm25_k1.2": 47.36,
+    "winner": "bm25_k1.5",
+    "margin": 0.19
+   },
+   {
+    "seed": 4,
+    "bm25_k1.5": 50.63,
+    "bm25_k1.2": 50.43,
+    "winner": "bm25_k1.5",
+    "margin": 0.2
+   },
+   {
+    "seed": 5,
+    "bm25_k1.5": 50.74,
+    "bm25_k1.2": 51.07,
+    "winner": "bm25_k1.2",
+    "margin": 0.33
+   },
+   {
+    "seed": 6,
+    "bm25_k1.5": 51.18,
+    "bm25_k1.2": 51.35,
+    "winner": "bm25_k1.2",
+    "margin": 0.17
+   },
+   {
+    "seed": 7,
+    "bm25_k1.5": 51.23,
+    "bm25_k1.2": 52.1,
+    "winner": "bm25_k1.2",
+    "margin": 0.87
+   },
+   {
+    "seed": 8,
+    "bm25_k1.5": 51.18,
+    "bm25_k1.2": 51.06,
+    "winner": "bm25_k1.5",
+    "margin": 0.12
+   },
+   {
+    "seed": 9,
+    "bm25_k1.5": 44.98,
+    "bm25_k1.2": 45.42,
+    "winner": "bm25_k1.2",
+    "margin": 0.44
+   },
+   {
+    "seed": 10,
+    "bm25_k1.5": 48.58,
+    "bm25_k1.2": 49.01,
+    "winner": "bm25_k1.2",
+    "margin": 0.43
+   },
+   {
+    "seed": 11,
+    "bm25_k1.5": 48.05,
+    "bm25_k1.2": 47.58,
+    "winner": "bm25_k1.5",
+    "margin": 0.47
+   },
+   {
+    "seed": 12,
+    "bm25_k1.5": 48.93,
+    "bm25_k1.2": 48.39,
+    "winner": "bm25_k1.5",
+    "margin": 0.54
+   },
+   {
+    "seed": 13,
+    "bm25_k1.5": 52.11,
+    "bm25_k1.2": 52.35,
+    "winner": "bm25_k1.2",
+    "margin": 0.24
+   },
+   {
+    "seed": 14,
+    "bm25_k1.5": 48.58,
+    "bm25_k1.2": 49.08,
+    "winner": "bm25_k1.2",
+    "margin": 0.5
+   },
+   {
+    "seed": 15,
+    "bm25_k1.5": 50.85,
+    "bm25_k1.2": 49.94,
+    "winner": "bm25_k1.5",
+    "margin": 0.91
+   },
+   {
+    "seed": 16,
+    "bm25_k1.5": 51.5,
+    "bm25_k1.2": 50.91,
+    "winner": "bm25_k1.5",
+    "margin": 0.59
+   },
+   {
+    "seed": 17,
+    "bm25_k1.5": 44.27,
+    "bm25_k1.2": 45.07,
+    "winner": "bm25_k1.2",
+    "margin": 0.8
+   },
+   {
+    "seed": 18,
+    "bm25_k1.5": 45.98,
+    "bm25_k1.2": 45.43,
+    "winner": "bm25_k1.5",
+    "margin": 0.55
+   },
+   {
+    "seed": 19,
+    "bm25_k1.5": 47.85,
+    "bm25_k1.2": 47.33,
+    "winner": "bm25_k1.5",
+    "margin": 0.52
+   }
+  ],
+  "winner_flips": 10,
+  "margin_min_max": [
+   0.07,
+   0.91
+  ]
+ },
+ "their_cited_pairs": {
+  "Small 74.68 vs bge-large-en-v1.5 74.64": 0.04,
+  "Medium 77.79 vs text-embedding-3-large 77.77": 0.02,
+  "Large 80.06 vs Qwen3-Embedding-8B 78.46": 1.6
+ }
+}
